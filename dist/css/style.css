@@ -18,7 +18,7 @@ body {
   font-weight: bold; }
 
 .click-notification p {
-  margin-top: 5px; }
+  margin-top: 15px; }
 
 .click-notification button {
   width: 80px;
@@ -29,5 +29,18 @@ body {
   background-color: #DEE9FC;
   border-radius: 5px; }
 
-.cat-pic img {
-  border: 1px solid #DEE9FC; }
+.cat-pic1 img, .cat-pic2 img {
+  border: 1px solid #DEE9FC;
+  margin: auto 20px; }
+
+.cat-pics {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; }

@@ -29,7 +29,7 @@ body {
 
 .click-notification {
 	p {
-		margin-top: 5px;
+		margin-top: 15px;
 	}
 
 	button {
@@ -43,9 +43,16 @@ body {
 	}
 }
 
-.cat-pic {
+.cat-pic1, .cat-pic2 {
 	img {
 		border: 1px solid #DEE9FC;
+		margin: auto 20px;
 	}
+}
+
+.cat-pics {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 }
 
