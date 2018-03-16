@@ -29,18 +29,15 @@ body {
   background-color: #DEE9FC;
   border-radius: 5px; }
 
-.cat-pic1 img, .cat-pic2 img {
-  border: 1px solid #DEE9FC;
-  margin: auto 20px; }
+.list-of-cats ul {
+  list-style-type: none; }
 
-.cat-pics {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center; }
+.list-of-cats li {
+  margin: 10px auto; }
+
+.show-cat img {
+  margin: 25px auto;
+  border: 1px solid #DEE9FC; }
+
+.dont-show-cat {
+  display: none; }

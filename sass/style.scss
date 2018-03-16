@@ -43,16 +43,24 @@ body {
 	}
 }
 
-.cat-pic1, .cat-pic2 {
-	img {
-		border: 1px solid #DEE9FC;
-		margin: auto 20px;
+.list-of-cats {
+
+	ul {
+		list-style-type: none;
+	}
+
+	li {
+		margin: 10px auto
 	}
 }
 
-.cat-pics {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
+.show-cat {
+	img {
+		margin: 25px auto;
+		border: 1px solid #DEE9FC;
+	}
 }
 
+.dont-show-cat {
+	display: none;
+}
