@@ -1,8 +1,51 @@
 body {
+	width: 100%;
 	text-align: center;
+	font-family: arial, helvetica, sans-serif;
+	background: #6395F2;
 }
 
-.welcome h1 {
-	margin:  80px;
-	font-size:  40pt;
+.welcome {
+	h1 {
+		margin:  80px auto 60px;
+		font-size:  40pt;
+		color: #091834
+	}
 }
+
+.click-notification, .welcome {
+	p {
+		margin-bottom: 40px;
+		color: #0A337F
+	}
+}
+
+.welcome {
+	p {
+		font-size: 18pt;
+		font-weight: bold;
+	}
+}
+
+.click-notification {
+	p {
+		margin-top: 5px;
+	}
+
+	button {
+		width: 80px;
+		height: 30px;
+		font-size: 10.5pt;
+		font-weight: bold;
+		color: #091834;
+		background-color: #DEE9FC;
+		border-radius: 5px;
+	}
+}
+
+.cat-pic {
+	img {
+		border: 1px solid #DEE9FC;
+	}
+}
+

@@ -13,11 +13,13 @@ var sourcemaps = require('gulp-sourcemaps');
 var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
 
-gulp.task('default', ['copy-html', 'styles', 'lint'], function() {
+gulp.task('default', ['copy-html', 'styles', 'lint', 'scripts'], function() {
 	gulp.watch('sass/**/*.scss', ['styles']);
 	gulp.watch('js/**/*.js', ['lint']);
+	gulp.watch('js/**/*.js', ['scripts']);
 	gulp.watch('./index.html', ['copy-html']);
 	gulp.watch('./dist/index.html').on('change', browserSync.reload);
+	gulp.watch('./dist/js/all.js').on('change', browserSync.reload);
 
 	browserSync.init({
 		server:'./dist'
@@ -52,6 +54,10 @@ gulp.task('scripts-dist', function() {
 			use: [pngquant()]
 		}))
 		.pipe(gulp.dest('dist/img'));
+	gulp.src('js/**/*.js')
+		.pipe(babel())
+		.pipe(concat('all.js'))
+		.pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('lint', function(){
