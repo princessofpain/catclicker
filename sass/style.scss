@@ -32,7 +32,7 @@ body {
 		margin-top: 15px;
 	}
 
-	button {
+	.reset {
 		width: 80px;
 		height: 30px;
 		font-size: 10.5pt;
@@ -59,8 +59,4 @@ body {
 		margin: 25px auto;
 		border: 1px solid #DEE9FC;
 	}
-}
-
-.dont-show-cat {
-	display: none;
 }

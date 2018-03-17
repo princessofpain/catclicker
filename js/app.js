@@ -1,7 +1,7 @@
-const count = 0;
+let clicks = 0;
+const resetButton = document.createElement('button');
 
 const Cat = function(name, url, alt){
-
 	this.name = name;
 	this.url = url;
 	this.alt = alt;
@@ -32,69 +32,46 @@ for(let i = 0; i < catList.length; i++){
 	const pic = document.createElement('img');
 	pic.setAttribute('src', catList[i].url);
 	pic.setAttribute('alt', catList[i].alt);
+	pic.setAttribute('id', catList[i].name);
 
 	catLi.addEventListener('click', (function(picCopy) {
 		return function() {
-			if(document.querySelector('.show-cat') !== null) {
-				const activePic = document.querySelector('.show-cat');
-				document.body.removeChild(activePic);
-				activePic.classList.toggle('dont-show-cat');
-				activePic.classList.remove('show-cat');
+			const catPicFrame = document.querySelector('div.show-cat');
+				
+			if(catPicFrame.hasChildNodes() === true) {
+				const catPic = catPicFrame.firstChild;
+				catPicFrame.removeChild(catPic);
 			}
-			// it would be good to build a div here to wrap the picture because the class cannot be used for the
-			picCopy.classList.remove('dont-show-cat');
-			document.body.appendChild(picCopy);
-			picCopy.classList.toggle('show-cat');
+
+			catPicFrame.appendChild(picCopy);	
+			addCounter(i);
+		};
+	})(pic));
+
+	pic.addEventListener('click', (function(picCopy) {
+		return function() {
+			clicks++;
+			const para = document.querySelector('.click-notification p');
+
+			if(clicks === 1) {
+				para.textContent = `You have clicked ${catList[i].name} ${clicks} time.`;
+			} else {
+				para.textContent = `You have clicked ${catList[i].name} ${clicks} times.`;
+			}
 		};
 	})(pic));
 }
 
+function addCounter(index) {
+	clicks = 0;
+	const clickNotification = document.querySelector('.click-notification');
+	
+	const counter = document.createElement('p');
+	counter.textContent = `You have clicked ${catList[index].name} 0 times`;	
+	clickNotification.appendChild(counter);
 
-
-// const catPic1 = document.querySelector('.cat-pic1');
-// const catPic2 = document.querySelector('.cat-pic2');
-// const counter = document.querySelector('.counter');
-// const button = document.querySelector('.reset');
-// let clickCounterIan = 0;
-// let clickCounterRocket = 0;
-
-// const name1 = document.createElement('p');
-// name1.textContent = 'My name is Ian';
-// catPic1.appendChild(name1);
-
-// const name2 = document.createElement('p');
-// name2.textContent = 'My name is Rocket';
-// catPic2.appendChild(name2);
-
-// catPic1.addEventListener('click', function() {
-// 	clickCounterIan++;
-// 	clickTimes();
-// });
-
-// catPic2.addEventListener('click', function() {
-// 	clickCounterRocket++;
-// 	clickTimes();
-// });
-
-// function clickTimes() {
-// 	if(clickCounterIan === 1 && clickCounterRocket === 1) {
-// 		counter.textContent = `You clicked Ian ${clickCounterIan} time
-// 		and Rocket ${clickCounterRocket} time`;
-// 	} else if (clickCounterIan === 1 && clickCounterRocket != 1) {
-// 		counter.textContent = `You clicked Ian ${clickCounterIan} time
-// 		and Rocket ${clickCounterRocket} times`;
-// 	} else if (clickCounterIan != 1 && clickCounterRocket === 1) {
-// 		counter.textContent = `You clicked Ian ${clickCounterIan} times
-// 		and Rocket ${clickCounterRocket} time`;
-// 	} else if (clickCounterIan != 1 && clickCounterRocket != 1) {
-// 		counter.textContent = `You clicked Ian ${clickCounterIan} times
-// 		and Rocket ${clickCounterRocket} times`;
-// 	}
-// }
-
-// button.addEventListener('click', function() {
-// 	clickCounterIan = 0;
-// 	clickCounterRocket = 0;
-// 	counter.textContent = 'You clicked Ian and Rocket 0 times';
-// });
+	resetButton.setAttribute('class', 'reset');
+	resetButton.textContent = 'Reset';
+	clickNotification.appendChild(resetButton);
+}
 

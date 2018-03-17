@@ -20,7 +20,7 @@ body {
 .click-notification p {
   margin-top: 15px; }
 
-.click-notification button {
+.click-notification .reset {
   width: 80px;
   height: 30px;
   font-size: 10.5pt;
@@ -38,6 +38,3 @@ body {
 .show-cat img {
   margin: 25px auto;
   border: 1px solid #DEE9FC; }
-
-.dont-show-cat {
-  display: none; }
