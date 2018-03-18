@@ -86,7 +86,7 @@ gulp.task('styles', function(done) {
 // gulp.task('tests', function(){
 // 	gulp.src('tests/spec/extraSpec.js')
 // 		.pipe(jasmine({
-// 			// integration: true,
+// 			integration: true,
 // 			vendor: 'js/**/*.js'
 // 		}));
 // });

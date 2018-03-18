@@ -3,3 +3,9 @@ $ git status
 # dependencies
 /node_modules
 
+# text files
+Mappe1.xlsx
+~$Mappe1.xlsx
+
+
+
