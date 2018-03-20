@@ -21,8 +21,7 @@ module.exports = {
         "browser": true,
         "es6": true,
         "jquery": true,
-        "jasmine": true,
-        "commonjs": true
+        "jasmine": true
     },
     "extends": "eslint:recommended",
 };

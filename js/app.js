@@ -82,7 +82,7 @@ $(function() {
 		renderList: function() {
 			$('.list-of-cats').append('<ul class="cat-ul"></ul>');
 
-			const catArray = octopus.getAllCats;
+			const catArray = octopus.getAllCats();
 
 			for(let i = 0; i < catArray.length; i++){
 				// create a new list element for every cat and add the name of the cat as textContent
