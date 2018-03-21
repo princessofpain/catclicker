@@ -5,7 +5,7 @@ $(function () {
 	// ========================== Model ============================= //
 	// store all the data like in a database, without functions
 	var model = {
-		currentCat: null,
+		//currentCat: null,
 		catList: [],
 		// prototype object for creating individual cat objects
 		Cat: function (name, url, alt, clicks) {
@@ -24,16 +24,19 @@ $(function () {
 			const cat5 = new model.Cat('Joel', 'https://welovecatsandkittens.com/wp-content/uploads/2015/10/box-5.jpg', 'cat in a box', 0);
 
 			model.catList = [cat1, cat2, cat3, cat4, cat5];
+		},
+
+		setClicks: function (index) {
+			model.catList[index].clicks += 1;
+		},
+
+		resetClicks: function (index) {
+			model.catList[index].clicks = 0;
+		},
+
+		allCats: function () {
+			return model.catList;
 		}
-
-		// setClicks: function() {
-		// 	const clicks = [0, 0, 0, 0, 0];
-		// 	return clicks;
-		// },
-
-		// newClicks: function(newClicks) {
-		// 	model.setClicks().clicks = newClicks;
-		// }
 	};
 
 	// ========================== Controller ============================= //
@@ -43,31 +46,23 @@ $(function () {
 		init() {
 			model.init();
 			view.renderList();
-			// view.countClicks();
 		},
 
 		getCatArray: function () {
-			return model.catList;
-		}
+			return model.allCats();
+		},
 
-		// changeCatArray: function(newCatArray) {
-		// 	model.newClicks(newCatArray);
-		// }
+		changeClicks: function (i) {
+			model.setClicks(i);
+		},
+
+		resetClicks: function (i) {
+			model.resetClicks(i);
+		}
 	};
 
 	// ========================== View ============================= //
 	var view = {
-
-		removePicture: function () {
-			$('div.show-cat').children().remove();
-			$('.counter').text('');
-		},
-
-		// resetPicture: function() {
-		// 	$('.reset').addEventListener('click', function() {
-		// 		$('.counter').text(`You have clicked ${catName} 0 times`);
-		// 	});
-		// },
 
 		renderList: function () {
 
@@ -77,7 +72,8 @@ $(function () {
 				// create a new list element for every cat and add the name of the cat as textContent
 				$('.cat-ul').append(`<li id='${[i]}'>${catArray[i].name}</li>`);
 				const catLi = $(`#${[i]}`);
-				const pic = `<img src='${catArray[i].url}' alt='${catArray[i].alt}' id='${catArray[i].name}'>`;
+				const catName = catArray[i].name;
+				const pic = `<img src='${catArray[i].url}' alt='${catArray[i].alt}' id='${i}'>`;
 
 				//eventListener for click on a list element
 				catLi.click(function (picCopy) {
@@ -86,23 +82,36 @@ $(function () {
 
 						// add the new cat picture to the DOM and reset the counter
 						$('div.show-cat').append(picCopy);
-						$('.counter').text(`You clicked ${$('img').attr('id')} ${octopus.counter} time/s`);
+						const index = $('img').attr('id');
+						const newCatArray = octopus.getCatArray();
+						$('.counter').text(`You clicked ${catName} ${newCatArray[index].clicks} time/s`);
 					};
 				}(pic));
 			}
+
+			$('.show-cat').click(function () {
+				const index = $('img').attr('id');
+				octopus.changeClicks(index);
+				view.renderCounter();
+			});
+
+			$('.reset-button').click(function () {
+				const index = $('img').attr('id');
+				octopus.resetClicks(index);
+				view.renderCounter();
+			});
+		},
+
+		renderCounter: function () {
+			const index = $('img').attr('id');
+			const newCatArray = octopus.getCatArray();
+			$('.counter').text(`You clicked ${newCatArray[index].name} ${newCatArray[index].clicks} time/s`);
+		},
+
+		removePicture: function () {
+			$('div.show-cat').children().remove();
+			$('.counter').text('');
 		}
-
-		// countClicks: function() {
-		// 	const catArray = octopus.getCatArray();
-
-		// 	$('.showcat:first-child').click(function() {
-		// 		console.log('!');
-		// 		const index = $(`${$('img').attr('id')}`);
-		// 		catArray[index].clicks += 1;
-		// 		$('.counter').text(`You clicked ${$('img').attr('id')} ${catArray[index].clicks} time/s`);
-		// 		octopus.changeCatArray(catArray);
-		// 	});
-		// },
 	};
 	octopus.init();
 });
