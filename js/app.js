@@ -71,7 +71,12 @@ $(function() {
 	var view = {
 
 		renderList: function() {
+			view.initList();
+			view.listenToPic();
+			view.listenToReset();
+		},
 
+		initList: function() {
 			const catArray = octopus.getCatArray();
 
 			for(let i = 0; i < catArray.length; i++){
@@ -95,13 +100,17 @@ $(function() {
 					};
 				})(pic));
 			}
+		},
 
+		listenToPic: function() {
 			$('.show-cat').click(function() {
 				const index = $('img').attr('id');
 				octopus.changeClicks(index);
 				view.renderCounter(index);
 			});
+		},
 
+		listenToReset: function() {
 			$('.reset-button').click(function() {
 				const index = $('img').attr('id');
 				octopus.resetClicks(index);
