@@ -17,7 +17,7 @@ $(function() {
 
 		init: function() {
 			// 5 new cat objects including name, url and alt text
-			const cat1 = new model.Cat('Ian','https://i.ytimg.com/vi/E9U9xS4thxU/hqdefault.jpg', 'cat in a shark', 0);
+			const cat1 = new model.Cat('Ean','https://i.ytimg.com/vi/E9U9xS4thxU/hqdefault.jpg', 'cat in a shark', 0);
 			const cat2 = new model.Cat('Rocket', 'http://www.veryfunnycatsvideos.com/wp-content/uploads/2016/08/funny-cat-and-dog-dancing-and-si.jpg',
 				'cat singing', 0);
 			const cat3 = new model.Cat('Lily', 'https://static.boredpanda.com/blog/wp-content/uploads/2014/03/cat-burger-bed-maru-6.jpg',
@@ -91,6 +91,7 @@ $(function() {
 						const index = $('img').attr('id');
 						const newCatArray = octopus.getCatArray();
 						$('.counter').text(`You clicked ${catName} ${newCatArray[index].clicks} time/s`);
+						$('.reset').css('display', 'inline');
 					};
 				})(pic));
 			}

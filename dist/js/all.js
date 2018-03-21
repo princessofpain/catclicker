@@ -17,7 +17,7 @@ $(function () {
 
 		init: function () {
 			// 5 new cat objects including name, url and alt text
-			const cat1 = new model.Cat('Ian', 'https://i.ytimg.com/vi/E9U9xS4thxU/hqdefault.jpg', 'cat in a shark', 0);
+			const cat1 = new model.Cat('Ean', 'https://i.ytimg.com/vi/E9U9xS4thxU/hqdefault.jpg', 'cat in a shark', 0);
 			const cat2 = new model.Cat('Rocket', 'http://www.veryfunnycatsvideos.com/wp-content/uploads/2016/08/funny-cat-and-dog-dancing-and-si.jpg', 'cat singing', 0);
 			const cat3 = new model.Cat('Lily', 'https://static.boredpanda.com/blog/wp-content/uploads/2014/03/cat-burger-bed-maru-6.jpg', 'cat burger', 0);
 			const cat4 = new model.Cat('Sammy', 'https://i0.wp.com/justcatvideos.co/wp-content/uploads/2017/12/The-Most-Cute-and-Funny-Cat-Videos-Compilation-The-best-cat-videos-week.jpg?w=1170', 'cat puts the head on a table', 0);
@@ -85,6 +85,7 @@ $(function () {
 						const index = $('img').attr('id');
 						const newCatArray = octopus.getCatArray();
 						$('.counter').text(`You clicked ${catName} ${newCatArray[index].clicks} time/s`);
+						$('.reset').css('display', 'inline');
 					};
 				}(pic));
 			}
@@ -92,18 +93,17 @@ $(function () {
 			$('.show-cat').click(function () {
 				const index = $('img').attr('id');
 				octopus.changeClicks(index);
-				view.renderCounter();
+				view.renderCounter(index);
 			});
 
 			$('.reset-button').click(function () {
 				const index = $('img').attr('id');
 				octopus.resetClicks(index);
-				view.renderCounter();
+				view.renderCounter(index);
 			});
 		},
 
-		renderCounter: function () {
-			const index = $('img').attr('id');
+		renderCounter: function (index) {
 			const newCatArray = octopus.getCatArray();
 			$('.counter').text(`You clicked ${newCatArray[index].name} ${newCatArray[index].clicks} time/s`);
 		},

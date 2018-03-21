@@ -38,3 +38,6 @@ body {
 .show-cat img {
   margin: 25px auto;
   border: 1px solid #DEE9FC; }
+
+.reset {
+  display: none; }
