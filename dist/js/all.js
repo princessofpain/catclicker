@@ -5,26 +5,25 @@ $(function () {
 	// ========================== Model ============================= //
 	// store all the data like in a database, without functions
 	var model = {
+		currentCat: null,
+		catList: [],
+		// prototype object for creating individual cat objects
+		Cat: function (name, url, alt, clicks) {
+			this.name = name;
+			this.url = url;
+			this.alt = alt;
+			this.clicks = clicks;
+		},
+
 		init: function () {
-
-			// prototype object for creating individual cat objects
-			const Cat = function (name, url, alt, clicks) {
-				this.name = name;
-				this.url = url;
-				this.alt = alt;
-				this.clicks = clicks;
-			};
-
 			// 5 new cat objects including name, url and alt text
-			const cat1 = new Cat('Ian', 'https://i.ytimg.com/vi/E9U9xS4thxU/hqdefault.jpg', 'cat in a shark', 0);
-			const cat2 = new Cat('Rocket', 'http://www.veryfunnycatsvideos.com/wp-content/uploads/2016/08/funny-cat-and-dog-dancing-and-si.jpg', 'cat singing');
-			const cat3 = new Cat('Lily', 'https://static.boredpanda.com/blog/wp-content/uploads/2014/03/cat-burger-bed-maru-6.jpg', 'cat burger');
-			const cat4 = new Cat('Sammy', 'https://i0.wp.com/justcatvideos.co/wp-content/uploads/2017/12/The-Most-Cute-and-Funny-Cat-Videos-Compilation-The-best-cat-videos-week.jpg?w=1170', 'cat puts the head on a table');
-			const cat5 = new Cat('Joel', 'https://welovecatsandkittens.com/wp-content/uploads/2015/10/box-5.jpg', 'cat in a box');
+			const cat1 = new model.Cat('Ian', 'https://i.ytimg.com/vi/E9U9xS4thxU/hqdefault.jpg', 'cat in a shark', 0);
+			const cat2 = new model.Cat('Rocket', 'http://www.veryfunnycatsvideos.com/wp-content/uploads/2016/08/funny-cat-and-dog-dancing-and-si.jpg', 'cat singing', 0);
+			const cat3 = new model.Cat('Lily', 'https://static.boredpanda.com/blog/wp-content/uploads/2014/03/cat-burger-bed-maru-6.jpg', 'cat burger', 0);
+			const cat4 = new model.Cat('Sammy', 'https://i0.wp.com/justcatvideos.co/wp-content/uploads/2017/12/The-Most-Cute-and-Funny-Cat-Videos-Compilation-The-best-cat-videos-week.jpg?w=1170', 'cat puts the head on a table', 0);
+			const cat5 = new model.Cat('Joel', 'https://welovecatsandkittens.com/wp-content/uploads/2015/10/box-5.jpg', 'cat in a box', 0);
 
-			const catList = [cat1, cat2, cat3, cat4, cat5]; // eslint-disable-line no-unused-vars
-
-			return catList;
+			model.catList = [cat1, cat2, cat3, cat4, cat5];
 		}
 
 		// setClicks: function() {
@@ -48,7 +47,7 @@ $(function () {
 		},
 
 		getCatArray: function () {
-			return model.init();
+			return model.catList;
 		}
 
 		// changeCatArray: function(newCatArray) {
