@@ -106,6 +106,7 @@ $(function() {
 			view.listenToReset();
 			view.listenToAdmin();
 			view.listenToSave();
+			view.listenToCancel();
 		},
 
 		removeList: function() {
@@ -171,6 +172,13 @@ $(function() {
 				octopus.adminFunctions(adminIndex, adminName, adminUrl, adminClicks);
 
 				$('.admin-input').css('display', 'none');
+			});
+		},
+
+		listenToCancel: function() {
+			$('#cancel').click(function() {
+				$('.admin-input').css('display', 'none');
+				view.emptyInputValue();
 			});
 		},
 

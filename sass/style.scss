@@ -94,7 +94,7 @@ body {
 		margin-bottom: 15px;
 	}
 
-	#save {
+	#save, #cancel{
 		font-size: 10.5pt;
 		font-weight: bold;
 		border-radius: 5px;
@@ -103,6 +103,10 @@ body {
 		color: #091834;
 		background-color: #DEE9FC;
 		margin-top: 10px;
+	}
+
+	#cancel {
+		float: right;
 	}
 }
 
