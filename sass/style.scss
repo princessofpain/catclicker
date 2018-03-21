@@ -31,16 +31,6 @@ body {
 	p {
 		margin-top: 15px;
 	}
-
-	.reset {
-		width: 80px;
-		height: 30px;
-		font-size: 10.5pt;
-		font-weight: bold;
-		color: #091834;
-		background-color: #DEE9FC;
-		border-radius: 5px;
-	}
 }
 
 .list-of-cats {
@@ -56,15 +46,63 @@ body {
 
 .show-cat {
 	img {
-		margin: 25px auto;
+		margin: 5px auto;
 		border: 1px solid #DEE9FC;
 	}
 }
 
-.reset {
-	display: none;
+.buttons {
+	margin: 0px auto 40px auto;
+
+	.reset {
+		font-size: 10.5pt;
+		font-weight: bold;
+		border-radius: 5px;
+		width: 80px;
+		height: 30px;
+		color: #091834;
+		background-color: #DEE9FC;
+		display: none;
+	}
+
+	.admin {
+		font-size: 10.5pt;
+		font-weight: bold;
+		border-radius: 5px;
+		width: 80px;
+		height: 30px;
+		color: #091834;
+		background-color: #DEE9FC;
+		display: none;
+		margin-left: 100px;
+	}
 }
 
 .admin-input {
+	width: 220px;
+	margin: 0px auto;
 	display: none;
+	font-size: 10pt;
+	color: #0A337F;
+	text-align: left;
+
+	#cat-url {
+		margin-left: 18px;
+	}
+
+	#cat-name, #cat-clicks, #cat-url {
+		margin-bottom: 15px;
+	}
+
+	#save {
+		font-size: 10.5pt;
+		font-weight: bold;
+		border-radius: 5px;
+		width: 80px;
+		height: 30px;
+		color: #091834;
+		background-color: #DEE9FC;
+		margin-top: 10px;
+	}
 }
+

@@ -36,6 +36,23 @@ $(function () {
 
 		allCats: function () {
 			return model.catList;
+		},
+
+		setAdminValues(index, name, url, clicks) {
+			const currentCat = model.catList[index];
+
+			if (name != '') {
+				currentCat.name = name;
+			}
+
+			if (url != '') {
+				currentCat.url = url;
+			}
+
+			if (clicks != '') {
+				const clickNumber = parseInt(clicks);
+				currentCat.clicks = clickNumber;
+			}
 		}
 	};
 
@@ -46,6 +63,7 @@ $(function () {
 		init() {
 			model.init();
 			view.renderList();
+			view.addListeners();
 		},
 
 		getCatArray: function () {
@@ -58,6 +76,15 @@ $(function () {
 
 		resetClicks: function (i) {
 			model.resetClicks(i);
+		},
+
+		adminFunctions: function (adminIndex, adminName, adminUrl, adminClicks) {
+			model.setAdminValues(adminIndex, adminName, adminUrl, adminClicks);
+			view.removeList();
+			view.renderList();
+			view.setAdminPicture();
+			view.renderCounter(adminIndex);
+			view.emptyInputValue();
 		}
 	};
 
@@ -65,7 +92,21 @@ $(function () {
 	var view = {
 
 		renderList: function () {
+			view.initList();
+		},
 
+		addListeners() {
+			view.listenToPic();
+			view.listenToReset();
+			view.listenToAdmin();
+			view.listenToSave();
+		},
+
+		removeList: function () {
+			$('li').remove();
+		},
+
+		initList: function () {
 			const catArray = octopus.getCatArray();
 
 			for (let i = 0; i < catArray.length; i++) {
@@ -85,21 +126,45 @@ $(function () {
 						const index = $('img').attr('id');
 						const newCatArray = octopus.getCatArray();
 						$('.counter').text(`You clicked ${catName} ${newCatArray[index].clicks} time/s`);
-						$('.reset').css('display', 'inline');
 					};
 				}(pic));
 			}
+		},
 
-			$('.show-cat').click(function () {
+		listenToPic: function () {
+			$('.show-cat').on('click', function () {
 				const index = $('img').attr('id');
 				octopus.changeClicks(index);
 				view.renderCounter(index);
+				$('.reset').css('display', 'inline');
+				$('.admin').css('display', 'inline');
 			});
+		},
 
-			$('.reset-button').click(function () {
+		listenToReset: function () {
+			$('.reset').click(function () {
 				const index = $('img').attr('id');
 				octopus.resetClicks(index);
 				view.renderCounter(index);
+			});
+		},
+
+		listenToAdmin: function () {
+			$('.admin').click(function () {
+				$('.admin-input').css('display', 'block');
+			});
+		},
+
+		listenToSave: function () {
+			$('#save').click(function () {
+				const adminIndex = $('img').attr('id');
+				const adminName = $('#cat-name').val();
+				const adminUrl = $('#cat-url').val();
+				const adminClicks = $('#cat-clicks').val();
+
+				octopus.adminFunctions(adminIndex, adminName, adminUrl, adminClicks);
+
+				$('.admin-input').css('display', 'none');
 			});
 		},
 
@@ -111,6 +176,20 @@ $(function () {
 		removePicture: function () {
 			$('div.show-cat').children().remove();
 			$('.counter').text('');
+			$('.admin-input').css('display', 'none');
+		},
+
+		setAdminPicture: function () {
+			// add the new cat picture to the DOM
+			const index = $('img').attr('id');
+			const adminCatArray = octopus.getCatArray();
+			$('img').attr('src', adminCatArray[index].url);
+		},
+
+		emptyInputValue: function () {
+			$('#cat-name').val('');
+			$('#cat-url').val('');
+			$('#cat-clicks').val('');
 		}
 	};
 	octopus.init();
